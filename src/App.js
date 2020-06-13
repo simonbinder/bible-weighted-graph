@@ -3,20 +3,12 @@ import * as d3 from "d3";
 import { findDOMNode } from "react-dom";
 import { nodes } from "./nodes";
 import { edge } from "./edge";
-import {
-  ReactSVGPanZoom,
-  UncontrolledReactSVGPanZoom,
-} from "react-svg-pan-zoom";
+import { UncontrolledReactSVGPanZoom } from "react-svg-pan-zoom";
 import "./App.css";
-
-///////////////////////////////////////////////////////////
-/////// Functions and variables
-///////////////////////////////////////////////////////////
 
 var FORCE = (function (nsp) {
   var width = 1920,
     height = 1600,
-    color = d3.scaleOrdinal(d3.schemeCategory10),
     initForce = (nodes, links) => {
       nsp.force = d3
         .forceSimulation(nodes)
@@ -43,7 +35,7 @@ var FORCE = (function (nsp) {
       } else return 10;
     },
     enterNode = (selection) => {
-      var circle = selection
+      selection
         .select("circle")
         .style("fill", (d) => d.color)
         .attr("r", (d) => calcRadius(d.id))
@@ -194,10 +186,10 @@ class App extends React.Component {
   }
 
   render() {
-    var links = this.state.links.map((link) => {
+    const links = this.state.links.map((link) => {
       return <Link key={link.id} data={link} />;
     });
-    var nodes = this.state.nodes.map((node) => {
+    const nodes = this.state.nodes.map((node) => {
       return <Node data={node} name={node.name} key={node.id} />;
     });
     return (
@@ -229,10 +221,6 @@ class App extends React.Component {
   }
 }
 
-///////////////////////////////////////////////////////////
-/////// Link component
-///////////////////////////////////////////////////////////
-
 class Link extends React.Component {
   componentDidMount() {
     this.d3Link = d3
@@ -250,10 +238,6 @@ class Link extends React.Component {
   }
 }
 
-///////////////////////////////////////////////////////////
-/////// Node component
-///////////////////////////////////////////////////////////
-
 class Node extends React.Component {
   componentDidMount() {
     this.d3Node = d3
@@ -269,8 +253,8 @@ class Node extends React.Component {
   render() {
     return (
       <g className="node">
-        <circle onClick={this.props.addLink} />{" "}
-        <text> {this.props.data.name} </text>{" "}
+        <circle onClick={this.props.addLink} />
+        <text> {this.props.data.name} </text>
       </g>
     );
   }
