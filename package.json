@@ -10,7 +10,7 @@
     "d3-zoom": "^1.8.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-svg-pan-zoom": "^3.8.0"
   },
   "scripts": {
